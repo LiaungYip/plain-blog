@@ -3,16 +3,16 @@
 
 name = "Plain Blog"
 license = "MIT"
-licenselink = "https://github.com/yourname/yourtheme/blob/master/LICENSE.md"
+licenselink = "https://github.com/LiaungYip/plain-blog/blob/master/LICENSE"
 description = ""
-homepage = "http://siteforthistheme.com/"
-tags = []
-features = []
+homepage = "https://github.com/LiaungYip/plain-blog/"
+tags = ["blog", "minimal", "white"]
+features = ["responsive", "google analytics"]
 min_version = 0.18
 
 [author]
-  name = ""
-  homepage = ""
+  name = "Li-aung Yip"
+  homepage = "https://www.penwatch.net/"
 
 # If porting an existing theme
 [original]
