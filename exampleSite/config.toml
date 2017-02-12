@@ -1,0 +1,78 @@
+languageCode = "en-us"
+title = "plain-blog Demo"
+baseURL = "http://example.org/"
+
+theme = "plain-blog"
+
+# copyright is shown in footer
+# Example:
+# copyright = "&copy; 2017 Joe Bloggs"
+copyright = "&copy; 2017 Joe Bloggs"
+
+# If your base url is not the site root, you must set canonifyURLs = "true"
+# Example 1:
+#   baseurl = "https://xyz.com/"
+#   canonifyURLs = "false"
+# Example 2:
+#   baseurl = "https://xyz.com/spqr/"
+#   canonifyURLs = "true"
+canonifyURLs = "false"
+
+[author]
+	# Sets <meta name="author" ...> tag in <head>
+    name = "Joe Bloggs"
+    # Enable Google Analytics.
+    # i.e.
+    #
+    # gaID = "UA-12345678-1"
+    #
+    # To find your tracking ID, see:
+    # https://support.google.com/analytics/answer/1032385?hl=en
+    gaID = ""
+
+# Top menu
+[[menu.top]]
+    url = "/tags/"
+    name = "Tags"
+    weight = 1
+
+[[menu.top]]
+    url = "/categories/"
+    name = "Categories"
+    weight = 2
+
+[[menu.top]]
+    url = "/about/"
+    name = "About"
+    weight = 3
+
+[[menu.top]]
+    url = "/contact/"
+    name = "Contact"
+    weight = 4
+
+# Bottom menu entries
+[[menu.bottom]]
+	url = "/contact/"
+	name = "Comments"
+	weight = 1
+
+[[menu.bottom]]
+	url = "//github.com/ExampleUser/"
+	name = "GitHub"
+	weight = 2
+
+[[menu.bottom]]
+	url = "//twitter.com/ExampleUser"
+	name = "Twitter"
+	weight = 3
+
+[[menu.bottom]]
+	url = "//www.facebook.com/ExampleUser"
+	name = "Facebook"
+	weight = 4
+
+[[menu.bottom]]
+	url = "https://github.com/LiaungYip/plain-blog/"
+	name = "plain-blog theme for Hugo"
+	weight = 5

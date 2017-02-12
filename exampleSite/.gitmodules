@@ -1,0 +1,3 @@
+[submodule "themes/plain-blog"]
+	path = themes/plain-blog
+	url = https://github.com/LiaungYip/plain-blog.git
