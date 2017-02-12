@@ -1,0 +1,21 @@
+<!-- https://discuss.gohugo.io/t/solved-generating-the-canonical-page-reference-for-a-sections-list/5341 -->
+{{ if isset .Params "tags" }}
+  {{ range .Params.tags }}
+    <a class="tag" href="{{ ($.Site.GetPage "taxonomyTerm" "tags").Permalink }}{{ . | urlize }}">Tag: {{ . }}</a>
+  {{ end }}
+{{ end }}
+
+{{ if isset .Params "categories" }}
+  {{ range .Params.categories }}
+    <a class="tag" href="{{ ($.Site.GetPage "taxonomyTerm" "categories").Permalink }}{{ . | urlize }}">Category: {{ . }}</a>
+  {{ end }}
+{{ end }}
+
+{{ if isset .Params "series" }}
+  {{ range .Params.series }}
+    <a class="tag" href="{{ ($.Site.GetPage "taxonomyTerm" "series").Permalink }}{{ . | urlize }}">Series: {{ . }}</a>
+  {{ end }}
+{{ end }}
+
+<!-- [TODO] "Previous in category", "Next in category".
+Some prior art here: https://discuss.gohugo.io/t/previous-in-series-and-next-in-series-links/2654/6 -->

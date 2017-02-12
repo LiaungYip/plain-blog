@@ -1,0 +1,34 @@
+{{ partial "header.html" . }}
+<div class="pure-g">
+  <div class="pure-u-1-24 pure-u-lg-1-12 pure-u-xl-1-5"></div>
+  <div class="pure-u-11-12 pure-u-lg-5-6 pure-u-xl-3-5" id="main">
+  	<main>
+  	  <header>
+  	    <h1>Listing for: {{ .Title }}</h1>
+  	  </header>
+
+  	  {{ if .Description }}
+  	     <p id="description">{{ .Description }}</p>
+  	  {{ end }}
+
+  	  {{ if .Content }}
+        {{ .Content }}
+      {{ end }}
+
+      {{ range $name, $page := sort .Data.Pages.ByTitle }}
+        {{ if ne .Type "page" }}
+          <article>
+          <a href="{{ $page.Permalink }}">{{ $page.Title }}</a>
+          {{ if $page.Draft }} (DRAFT) {{ end }}
+            <div>
+              <time datetime="{{ $page.Date.Format "2006-01-02T15:04:05Z07:00" }}" class="post-list timeago">{{ $page.Date.Format "2006-01-02" }}</time>
+              {{ partial "list_taxonomies.html" . }}
+            <div>
+          </article>
+        {{ end }}
+      {{ end }}
+    </main>
+  </div>
+  <div class="pure-u-1-24 pure-u-lg-1-12 pure-u-xl-1-5"></div>
+</div>
+{{ partial "footer.html" . }}
