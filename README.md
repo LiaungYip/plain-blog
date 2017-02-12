@@ -10,6 +10,12 @@ Inspired by [qntm.org](//qntm.org) and [gizak/nofancy](https://github.com/gizak/
 
 Looking for a Hugo documentation theme with a similar focus on minimal functionality? Try [`plain-docs`](//github.com/LiaungYip/plain-docs/).
 
+## Screenshots
+
+![](/images/tn.png)
+
+![](/images/screenshot.png)
+
 ## Features
 
 * Pages load FAST FAST FAST. (First page overhead: ≈40 kB. Subsequent page overhead: ≈3 kB.)
