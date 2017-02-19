@@ -91,6 +91,11 @@ img {
 	height: auto;
 }
 
+video {
+	max-width: 100%;
+	height: auto;
+}
+
 /* Various cosmetic tweaks */
 code {
 	color: #C00;
