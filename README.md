@@ -12,9 +12,9 @@ Looking for a Hugo documentation theme with a similar focus on minimal functiona
 
 ## Screenshots
 
-![](/images/tn.png)
+![](https://raw.githubusercontent.com/LiaungYip/plain-blog/master/images/tn.png)
 
-![](/images/screenshot.png)
+![](https://raw.githubusercontent.com/LiaungYip/plain-blog/master/images/screenshot.png)
 
 ## Features
 
