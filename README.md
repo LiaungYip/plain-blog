@@ -26,6 +26,7 @@ Looking for a Hugo documentation theme with a similar focus on minimal functiona
 * Google Analytics.
 * Top and bottom menus.
 * Printable - headers, footers, and menus disappear when you hit the "Print" button.
+* Table of contents - just put `show_table_of_contents: true` or `show_table_of_contents = "true"` in your front matter.
 * [Example site available](https://github.com/LiaungYip/plain-blog-example) - `config.toml` and basic pages ready to go.
 
 ## Things omitted

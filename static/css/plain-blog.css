@@ -122,3 +122,19 @@ blockquote {
 		display: none !important;
 	}
 }
+
+#toc {
+	float: right;
+	border: 1px solid silver;
+	padding: 0em 1em;
+	margin: 1em;
+	background: #f8f8f8;
+}
+
+#toc ul {
+	padding-left: 1em;
+}
+
+#toc a {
+	text-decoration: none;
+}

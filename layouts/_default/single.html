@@ -10,8 +10,15 @@
   	  </header>
 
   	  {{ if .Description }}
-  	     <p id="description">{{ .Description }}</p>
+  	    <p id="description">{{ .Description }}</p>
   	  {{ end }}
+
+
+      {{ if .Params.show_table_of_contents }}
+        <aside id="toc">
+          {{ .TableOfContents }}
+        </aside>
+      {{ end }}
 
   	  {{ if .Content }}
         {{ .Content }}
