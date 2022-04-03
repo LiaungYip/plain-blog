@@ -11,7 +11,7 @@
     {{ if .Site.Author.name }}
       <meta name="author" content="{{ .Site.Author.name }}">
     {{ end }}
-    {{ .Hugo.Generator }}
+    {{ hugo.Generator }}
     <!--[if IE]>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
@@ -28,7 +28,7 @@
 <div class="pure-g">
   <div class="pure-u-1" id="header">
     <a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
-    {{ if isset .Site.Params.header "tagline" }}<p id="tagline">{{ .Site.Params.header.tagline }}</p>{{ end }}
+    {{ if .Site.Params.header.tagline }}<p id="tagline">{{ .Site.Params.header.tagline }}</p>{{ end }}
     {{ range .Site.Menus.top }}
       <a href="{{ .URL }}">{{ .Name }}</a>
     {{ end }}
