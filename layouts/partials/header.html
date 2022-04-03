@@ -8,8 +8,8 @@
     {{ if .Description }}
       <meta name="description" content="{{ .Description }}">
     {{ end }}
-    {{ if .Site.Author.name }}
-      <meta name="author" content="{{ .Site.Author.name }}">
+    {{ if site.Author.name }}
+      <meta name="author" content="{{ site.Author.name }}">
     {{ end }}
     {{ hugo.Generator }}
     <!--[if IE]>
@@ -22,14 +22,14 @@
       <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/grids-responsive-min.css">
     <!--<![endif]-->
     
-    <link rel="stylesheet" href="{{ .Site.BaseURL }}css/plain-blog.css">
+    <link rel="stylesheet" href="{{ site.BaseURL }}css/plain-blog.css">
 </head>
 <body>
 <div class="pure-g">
   <div class="pure-u-1" id="header">
-    <a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
-    {{ if .Site.Params.header.tagline }}<p id="tagline">{{ .Site.Params.header.tagline }}</p>{{ end }}
-    {{ range .Site.Menus.top }}
+    <a href="{{ site.BaseURL }}">{{ site.Title }}</a>
+    {{ if site.Params.header.tagline }}<p id="tagline">{{ site.Params.header.tagline }}</p>{{ end }}
+    {{ range site.Menus.top }}
       <a href="{{ .URL }}">{{ .Name }}</a>
     {{ end }}
   </div>

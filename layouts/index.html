@@ -16,7 +16,7 @@
       {{ end }}
 
       <h1>List of all pages</h1>
-      {{ range $name, $page := .Site.RegularPages }}
+      {{ range $name, $page := site.RegularPages }}
         {{ if ne .Type "page" }}
           <article>
           <a href="{{ $page.Permalink }}">{{ $page.Title }}</a>
