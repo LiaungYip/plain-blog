@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
     <title>{{ .Title }}</title>
-    <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/pure-min.css" integrity="sha384-UQiGfs9ICog+LwheBSRCt1o5cbyKIHbwjWscjemyBMT9YCUMZffs6UqUTd0hObXD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.1.0/build/pure-min.css" integrity="sha384-yHIFVG6ClnONEA5yB5DJXfW2/KC173DIQrYoZMEtBvGzmf0PKiGyNEqe9N6BNDBH" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {{ if .Description }}
       <meta name="description" content="{{ .Description }}">
@@ -12,16 +12,7 @@
       <meta name="author" content="{{ site.Author.name }}">
     {{ end }}
     {{ hugo.Generator }}
-    <!--[if IE]>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <![endif]-->
-    <!--[if lte IE 8]>
-      <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/grids-responsive-old-ie-min.css">
-    <![endif]-->
-    <!--[if gt IE 8]><!-->
-      <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/grids-responsive-min.css">
-    <!--<![endif]-->
-    
+	<link rel="stylesheet" href="https://unpkg.com/purecss@2.1.0/build/grids-responsive-min.css" />
     <link rel="stylesheet" href="{{ site.BaseURL }}css/plain-blog.css">
 </head>
 <body>
