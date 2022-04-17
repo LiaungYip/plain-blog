@@ -4,7 +4,7 @@
       <a href="{{ .URL }}">{{ .Name }}</a>
     {{ end }}
     
-      {{ if site.Params.footer.show_last_modified_time }}
+      {{ if eq site.Params.footer.show_last_modified_time "true" }}
         <p>Last modified <time datetime="{{- .Lastmod.Format "2006-01-02T15:04:05Z07:00" -}}" class="post-list timeago">{{- .Lastmod.Format "2006-01-02" -}}</time></p>
       {{ end }}
 
