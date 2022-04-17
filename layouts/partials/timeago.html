@@ -1,0 +1,10 @@
+{{ $timeago:= resources.GetRemote "https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js" | minify | fingerprint }}
+
+<!--
+<script src="{{ $timeago.Permalink }}" type="text/javascript"></script>
+-->
+
+<script type="text/javascript">
+  {{ $timeago.Content | safeJS }} <!-- timeago is a 2kB library, just inline it -->
+  new timeago.render(document.querySelectorAll('.timeago'));
+</script>

@@ -14,10 +14,7 @@
     {{ end }}
   </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/2.0.4/timeago.min.js" integrity="sha256-34otvl+f6DWlliQUlAwT5hvizEJc8lPlNpW9T23pfGA=" crossorigin="anonymous"></script>
-<script type="text/javascript">
-  new timeago().render(document.querySelectorAll('.timeago'));
-</script>
+{{ partial "timeago.html" . }}
 {{ if site.Author.gaid }}
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
