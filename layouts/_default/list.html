@@ -15,7 +15,7 @@
         {{ .Content }}
       {{ end }}
 
-      {{ range $name, $page := sort .Data.Pages.ByTitle }}
+      {{ range $name, $page := .Data.Pages.ByDate.Reverse }}
         {{ if ne .Type "page" }}
           <article>
           <a href="{{ $page.Permalink }}">{{ $page.Title }}</a>
