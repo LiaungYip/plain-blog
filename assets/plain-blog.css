@@ -128,7 +128,7 @@ blockquote {
 
 /* Hide stuff when printing */
 @media print {
-	#header, #foot {
+	#header, #foot, #related {
 		display: none !important;
 	}
 }

@@ -30,6 +30,8 @@
 		{{ end }}
 		
 		<!-- List related pages -->
+		<!-- [TODO] "Previous in category", "Next in category".
+		Some prior art here: https://discuss.gohugo.io/t/previous-in-series-and-next-in-series-links/2654/6 -->
 		{{ $related := .Site.RegularPages.Related . | first 5 }}
 		{{ with $related }}
 		<h2>Related</h2>
