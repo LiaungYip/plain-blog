@@ -1,0 +1,24 @@
+<!--
+Put all CSS files into one bundled file.
+Reference: https://bridgesense.com/blog/using-hugo-pipes-to-bundle-scripts/
+
+Note the following:
+* All stylesheets are unified into one.
+* Remote stylesheets are downloaded at website build time. There is no dependence on third-party CDNs after build time.
+* The CSS is minified.
+-->
+
+{{ $css_file_1 := resources.Get "plain-blog.css" }}
+{{ $css_file_2 := resources.GetRemote "https://unpkg.com/purecss@2.1.0/build/pure-min.css" }}
+{{ $css_file_3 := resources.GetRemote "https://unpkg.com/purecss@2.1.0/build/grids-responsive-min.css" }}
+
+{{ $css_files := slice $css_file_1 $css_file_2 $css_file_3 }}
+
+{{ $cssBundle := slice }}
+
+{{ range $css_files }}
+		{{ $cssBundle = $cssBundle | append . }}
+{{ end }}
+{{ $cssBundle := $cssBundle | resources.Concat "css/bundle.css" | minify | fingerprint }}
+
+<link rel="stylesheet" href="{{ $cssBundle.Permalink | absURL }}">
