@@ -17,7 +17,6 @@
 <div class="pure-g">
   <div class="pure-u-1" id="header">
     <a href="{{ site.BaseURL }}">{{ site.Title }}</a>
-    {{ if site.Params.header.tagline }}<p id="tagline">{{ site.Params.header.tagline }}</p>{{ end }}
     {{ range site.Menus.top }}
       <a href="{{ .URL }}">{{ .Name }}</a>
     {{ end }}
