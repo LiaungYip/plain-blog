@@ -43,5 +43,4 @@ That means I've left out anything that wasn't needed. Some things I omitted incl
 ## Libraries used
 
 * [`purecss`](https://purecss.io/) ([License](https://github.com/yahoo/pure/blob/master/LICENSE.md))
-* [`html5shiv`](https://github.com/aFarkas/html5shiv) for IE8 compat. ([License](https://github.com/aFarkas/html5shiv/blob/master/MIT%20and%20GPL2%20licenses.md))
 * [`timeago.js`](https://github.com/hustcc/timeago.js) for fuzzy timestamps - "just now", "4 days ago", "2 years ago". (MIT License)
