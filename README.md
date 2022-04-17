@@ -26,7 +26,9 @@ Looking for a Hugo documentation theme with a similar focus on minimal functiona
 * Google Analytics.
 * Top and bottom menus.
 * Printable - headers, footers, and menus disappear when you hit the "Print" button.
-* Table of contents - just put `show_table_of_contents: true` or `show_table_of_contents = "true"` in your front matter.
+* Table of contents - use `show_table_of_contents = "true"` in front matter.
+* Hugo Pipes is used to fetch third-party CSS and JS dependencies at the time you build the website, avoiding use of third-party CDN's. (See https://github.com/gohugoio/hugoThemes/issues/668 .)
+* Supports math using KaTeX - `$ x = \frac{-b\pm\sqrt{b^2-4ac}}{2a} $` -  use `math = "true"` in front matter. (Note: Uses third party CDN - for now.)
 * [Example site available](https://github.com/LiaungYip/plain-blog-example) - `config.toml` and basic pages ready to go.
 
 ## Things omitted
