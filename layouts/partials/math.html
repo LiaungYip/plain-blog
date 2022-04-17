@@ -1,0 +1,64 @@
+<!--
+Use KaTeX for math - apparently faster than MathJax (if slightly less capable).
+
+Using CDN downloads for now.
+The other way is to download a KaTeX release and include all the files.
+See: https://github.com/KaTeX/KaTeX/releases
+-->
+
+<!-- https://katex.org/docs/browser.html -->
+
+<link rel="stylesheet" 
+href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css" 
+	integrity="sha384-KiWOvVjnN8qwAZbuQyWDIbfCLFhLXNETzBQjA/92pIowpC0d2O3nppDGQVgwd2nB" 
+	crossorigin="anonymous">
+	
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js" 
+	integrity="sha384-0fdwu/T/EQMsQlrHCCHoH10pkPLlKA1jL5dFyUOvB3lfeT2540/2g6YgSi2BL14p" 
+	crossorigin="anonymous">
+</script>
+
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/auto-render.min.js" 
+	integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" 
+	crossorigin="anonymous" onload="renderMathInElement(document.body);">
+</script>
+		
+<!-- Enable $ ... $ for inline math. 
+From: https://mertbakir.gitlab.io/hugo/math-typesetting-in-hugo/ -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+            delimiters: [
+                {left: "$$", right: "$$", display: true},
+                {left: "$", right: "$", display: false}
+            ]
+        });
+    });
+</script>
+
+<!-- https://www.morch.com/posts/2021-07-24-mathjax-in-hugo/ -->
+<!--
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+-->
+
+
+<!-- This doesn't work. Mathjax wants to pull in a lot of other files (for example fonts). -->
+<!--
+{{ $js_file_1 := resources.GetRemote "https://polyfill.io/v3/polyfill.min.js?features=es6" }}
+{{ $js_file_2 := resources.GetRemote "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" }}
+
+{{ $js_files := slice $js_file_1 $js_file_2 }}
+
+{{ $jsBundle := slice }}
+
+{{ range $js_files }}
+		{{ $jsBundle = $jsBundle | append . }}
+{{ end }}
+{{ $jsBundle := $jsBundle | resources.Concat "js/math.js" | minify | fingerprint }}
+
+<script src="{{ $jsBundle.Permalink | absURL }}"></script>
+-->

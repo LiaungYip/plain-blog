@@ -11,7 +11,12 @@
 		<meta name="author" content="{{ site.Author.name }}">
 	{{ end }}
 	{{ hugo.Generator }}
+	
 	{{ partial "stylesheets.html" . }}
+	
+	{{ if .Params.math }}
+		{{ partial "math.html" }}
+	{{ end }}
 </head>
 <body>
 <div class="pure-g">
