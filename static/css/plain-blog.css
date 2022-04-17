@@ -4,6 +4,16 @@
 	border-bottom: 2px solid silver;
 }
 
+/* related content */
+#related {
+	border-top: 2px solid silver;
+	background: #f8f8f8;
+	margin-top: 2em;
+	margin-bottom: -2em;
+	padding: 0;
+	padding-bottom: 1em;
+}
+
 /* site footer */
 #foot {
 	margin-top: 2em;

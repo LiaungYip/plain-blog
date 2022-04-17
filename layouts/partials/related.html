@@ -1,0 +1,44 @@
+<div class="pure-g" id="related">
+    <div class="pure-u-1-24 pure-u-lg-1-12 pure-u-xl-1-5"></div>
+	<div class="pure-u-11-12 pure-u-lg-5-6 pure-u-xl-3-5">
+		<h1>More</h1>
+		<!-- Basic previous / next pages by date -->
+		{{ with .Next }}
+			<p>Next: <a href="{{ .RelPermalink }}">{{ .Title }}</a></p>
+		{{ end }}
+		{{ with .Prev }}
+			<p>Previous: <a href="{{ .RelPermalink }}">{{ .Title }}</a></p>
+		{{ end }}	
+		
+		<!-- List series that this page is part of -->
+		{{ $this_page_series := .Params.series }}
+		{{ with $this_page_series }}
+			{{ range $key, $taxonomy := site.Taxonomies.series }}
+				{{ if in $taxonomy.Pages $.Page }}
+					<h2><a href="{{ .Page.Permalink }}">Series: {{ .Page.Title }}</a></h2>
+					<ol>
+					{{ range $taxonomy.Pages.ByDate.Reverse }}
+						{{ if eq . $.Page }}
+							<li><b><a href="{{ .Permalink}}">{{ .Page.Title }}</a></b> (You are here)</li>
+						{{ else }}
+							<li><a href="{{ .Permalink}}">{{ .Page.Title }}</a></li>
+						{{ end }}
+					{{ end }}
+					</ol>
+				{{ end }}
+			{{ end }}
+		{{ end }}
+		
+		<!-- List related pages -->
+		{{ $related := .Site.RegularPages.Related . | first 5 }}
+		{{ with $related }}
+		<h2>Related</h2>
+		<ul>
+			{{ range . }}
+			<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+			{{ end }}
+		</ul>
+		{{ end }}
+	</div>
+	<div class="pure-u-1-24 pure-u-lg-1-12 pure-u-xl-1-5"></div>
+</div>
