@@ -13,9 +13,8 @@
 
       <ul>
         {{ range $key, $value := .Data.Terms.ByCount }}
-          <li>
-            <a href="{{ $value.Name | urlize }}">{{ $value.Name }}</a>
-            ({{ $value.Count }})
+          <li>            
+			<a href="{{ .Page.Permalink }}">{{ .Page.Title }}</a> ({{ $value.Count }})
           </li>
         {{ end }}
       </ul>
