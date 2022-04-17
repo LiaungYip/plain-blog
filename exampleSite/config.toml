@@ -51,6 +51,11 @@ canonifyURLs = "false"
 			# before you touch this setting.
 			# unsafe = true
 	
+	[markup.tableOfContents]
+		endLevel = 3
+		ordered = false
+		startLevel = 1
+	
 	# The new default syntax highlighter is Chroma.
 	# The "pygments" style is used because it goes well with a light-coloured
 	# theme.

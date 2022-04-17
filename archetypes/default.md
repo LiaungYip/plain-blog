@@ -19,6 +19,8 @@ series:
 
 # Setting math: true will enable KaTeX for this page.
 math: false
+
+show_table_of_contents: false
 ---
 
 Type your content here.
