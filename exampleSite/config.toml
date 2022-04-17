@@ -9,6 +9,9 @@ theme = "plain-blog"
 # copyright = "&copy; 2017 Joe Bloggs"
 copyright = "&copy; 2017 Joe Bloggs"
 
+# Probably not needed
+# MetaDataFormat = "yaml"
+
 # If your base url is not the site root, you must set canonifyURLs = "true"
 # Example 1:
 #   baseurl = "https://xyz.com/"
@@ -21,6 +24,7 @@ canonifyURLs = "false"
 [author]
 	# Sets <meta name="author" ...> tag in <head>
     name = "Joe Bloggs"
+	
     # Enable Google Analytics.
     # i.e.
     #
@@ -29,6 +33,68 @@ canonifyURLs = "false"
     # To find your tracking ID, see:
     # https://support.google.com/analytics/answer/1032385?hl=en
     gaID = ""
+
+# Override the default taxonomies configuration.
+# Default is to have two taxonomies - "categories" and "tags".
+# We add "series" as a third taxonomy.
+[taxonomies]
+  category = "categories"
+  series = "series"
+  tag = "tags"
+
+[markup]
+	[markup.goldmark]
+		[markup.goldmark.renderer]
+			# If your website contains a lot of raw HTML (i.e. HTML tables)
+			# then you may need to enable "unsafe" mode.
+			# Read and understand https://github.com/gohugoio/hugo/issues/6581
+			# before you touch this setting.
+			# unsafe = true
+	
+	# The new default syntax highlighter is Chroma.
+	# The "pygments" style is used because it goes well with a light-coloured
+	# theme.
+	# You may choose other styles - see:
+	# https://gohugo.io/content-management/syntax-highlighting/#list-of-chroma-highlighting-languages
+	[markup.highlight]
+		guessSyntax = true
+		lineNos = true
+		style = 'pygments'
+
+[minify]
+	minifyOutput = true
+
+# https://gohugo.io/content-management/related#configure-related-content
+[related]
+  includeNewer = false
+  threshold = 80
+  toLower = false
+[[related.indices]]
+  name = 'keywords'
+  weight = 100
+[[related.indices]]
+  name = 'date'
+  weight = 10
+# Tags normally gets added automatically, since we have added config
+# for [related] we have to add this config explicitly.
+#
+# Refer the docs:
+#
+# > If you add a related config section, you need to add a complete 
+# > configuration. It is not possible to just set, say, includeNewer
+# > and use the rest from the Hugo defaults.
+#
+[[related.indices]]
+  name = 'tags'
+  weight = 80
+# Categories does not normally get added, add it
+[[related.indices]]
+  name = 'categories'
+  weight = 80
+
+[params.footer]
+	show_hugo = "true"
+	show_last_modified_time = "false"
 
 # Top menu
 [[menu.top]]
