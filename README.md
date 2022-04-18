@@ -12,8 +12,6 @@ Looking for a Hugo documentation theme with a similar focus on minimal functiona
 
 ## Screenshots
 
-![](https://raw.githubusercontent.com/LiaungYip/plain-blog/master/images/tn.png)
-
 ![](https://raw.githubusercontent.com/LiaungYip/plain-blog/master/images/screenshot.png)
 
 ## Features
@@ -29,7 +27,6 @@ Looking for a Hugo documentation theme with a similar focus on minimal functiona
 * Table of contents - use `show_table_of_contents = "true"` in front matter.
 * Hugo Pipes is used to fetch third-party CSS and JS dependencies at the time you build the website, avoiding use of third-party CDN's. (See https://github.com/gohugoio/hugoThemes/issues/668 .)
 * Supports math using KaTeX - `$ x = \frac{-b\pm\sqrt{b^2-4ac}}{2a} $` -  use `math = "true"` in front matter. (Note: Uses third party CDN - for now.)
-* [Example site available](https://github.com/LiaungYip/plain-blog-example) - `config.toml` and basic pages ready to go.
 
 ## Things omitted
 
@@ -38,7 +35,7 @@ My goal is to load the first page in 50kB or less.
 That means I've left out anything that wasn't needed. Some things I omitted include:
 
 * jQuery (30kB compressed)
-* highlight.js (100kB compressed) - use Pygments for [server-side highlighting](https://gohugo.io/extras/highlighting/) instead.
+* highlight.js (100kB compressed) - use Chroma for [server-side highlighting](https://gohugo.io/extras/highlighting/) instead.
 * Web fonts (e.g. 200kB for Proxima Nova and Source Code Pro)
 * Icons, i.e. font-awesome (70 kB compressed)
 
