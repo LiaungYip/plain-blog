@@ -52,7 +52,7 @@ header {
 header h1 {
 	margin-bottom: 0.2em;
 }
-header time {
+header span {
 	font-size: small;
 	margin-right: 1em;
 }
@@ -72,7 +72,7 @@ header a.tag:hover {
 article {
 	margin: 1em 0;
 }
-article time {
+article span {
 	font-size: small;
 }
 article a {

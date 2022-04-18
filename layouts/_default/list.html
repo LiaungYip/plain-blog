@@ -21,7 +21,7 @@
           <a href="{{ $page.Permalink }}">{{ $page.Title }}</a>
           {{ if $page.Draft }} (DRAFT) {{ end }}
             <div>
-              <time datetime="{{ $page.Date.Format "2006-01-02T15:04:05Z07:00" }}" class="post-list timeago">{{ $page.Date.Format "2006-01-02" }}</time>
+              {{ partial "timestamps.html" . }}
               {{ partial "list_taxonomies.html" . }}
             <div>
           </article>

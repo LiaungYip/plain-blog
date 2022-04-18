@@ -17,7 +17,7 @@
 				{{ if in $taxonomy.Pages $.Page }}
 					<h2><a href="{{ .Page.Permalink }}">Series: {{ .Page.Title }}</a></h2>
 					<ol>
-					{{ range $taxonomy.Pages.ByDate.Reverse }}
+					{{ range $taxonomy.Pages.ByDate }}
 						{{ if eq . $.Page }}
 							<li><b><a href="{{ .Permalink}}">{{ .Page.Title }}</a></b> (You are here)</li>
 						{{ else }}
