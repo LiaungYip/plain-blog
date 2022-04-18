@@ -2,12 +2,13 @@ languageCode = "en-us"
 title = "plain-blog Demo"
 baseURL = "http://example.org/"
 
+themesDir = "../.."
 theme = "plain-blog"
 
 # copyright is shown in footer
 # Example:
-# copyright = "&copy; 2017 Joe Bloggs"
-copyright = "&copy; 2017 Joe Bloggs"
+# copyright = "&copy; 2017-2022 Joe Bloggs"
+copyright = "&copy; 2017-2022 Joe Bloggs"
 
 # Probably not needed
 # MetaDataFormat = "yaml"
@@ -69,6 +70,14 @@ canonifyURLs = "false"
 [minify]
 	minifyOutput = true
 
+
+# Use file last modified date for lastmod
+# See: https://www.ii.com/hugo-tips-fragments/#_frontmatter
+[frontmatter]
+	date = [ "publishDate", ":filename", "date", ":fileModTime" ]
+	publishDate = [ "publishDate", ":filename", "date", ":fileModTime" ]
+	lastmod = [ "lastmod", ":fileModTime" ]
+
 # https://gohugo.io/content-management/related#configure-related-content
 [related]
   includeNewer = false
@@ -88,7 +97,6 @@ canonifyURLs = "false"
 # > If you add a related config section, you need to add a complete 
 # > configuration. It is not possible to just set, say, includeNewer
 # > and use the rest from the Hugo defaults.
-#
 [[related.indices]]
   name = 'tags'
   weight = 80
@@ -113,14 +121,19 @@ canonifyURLs = "false"
     weight = 2
 
 [[menu.top]]
+    url = "/series/"
+    name = "Series"
+    weight = 3
+
+[[menu.top]]
     url = "/about/"
     name = "About"
-    weight = 3
+    weight = 4
 
 [[menu.top]]
     url = "/contact/"
     name = "Contact"
-    weight = 4
+    weight = 5
 
 # Bottom menu entries
 [[menu.bottom]]
@@ -129,17 +142,17 @@ canonifyURLs = "false"
 	weight = 1
 
 [[menu.bottom]]
-	url = "//github.com/ExampleUser/"
+	url = "https://github.com/ExampleUser/"
 	name = "GitHub"
 	weight = 2
 
 [[menu.bottom]]
-	url = "//twitter.com/ExampleUser"
+	url = "https://twitter.com/ExampleUser"
 	name = "Twitter"
 	weight = 3
 
 [[menu.bottom]]
-	url = "//www.facebook.com/ExampleUser"
+	url = "https://www.facebook.com/ExampleUser"
 	name = "Facebook"
 	weight = 4
 
