@@ -68,7 +68,7 @@ Refer https://purecss.io/tables/ .
 
 Should you require more advanced table functionality (i.e. `rowspan` or `colspan`) then you will need to use raw HTML tables.
 
-(This is ture of all Hugo themes - not just `plain-blog`.)
+(This is true of Markdown and Hugo in general - not just `plain-blog`.)
 
 Using raw HTML requires the `unsafe` option to be set to `true`.
 

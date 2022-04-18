@@ -6,6 +6,9 @@ date: 2022-04-17
 # Explicitly setting an URL is optional.
 # url: /blank_page
 
+tags:
+- Warm colours
+
 series: 
 - Colours of the rainbow
 
