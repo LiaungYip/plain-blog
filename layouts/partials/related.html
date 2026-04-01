@@ -8,8 +8,8 @@
 		{{ end }}
 		{{ with .Prev }}
 			<p>Previous: <a href="{{ .RelPermalink }}">{{ .Title }}</a></p>
-		{{ end }}	
-		
+		{{ end }}
+
 		<!-- List series that this page is part of -->
 		{{ $this_page_series := .Params.series }}
 		{{ with $this_page_series }}
@@ -28,19 +28,67 @@
 				{{ end }}
 			{{ end }}
 		{{ end }}
-		
-		<!-- List related pages -->
-		<!-- [TODO] "Previous in category", "Next in category".
-		Some prior art here: https://discuss.gohugo.io/t/previous-in-series-and-next-in-series-links/2654/6 -->
-		{{ $related := .Site.RegularPages.Related . | first 5 }}
-		{{ with $related }}
-		<h2>Related</h2>
-		<ul>
-			{{ range . }}
-			<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+
+		<!-- Other posts in the same categories -->
+		{{ range $key, $taxonomy := site.Taxonomies.categories }}
+			{{ if in $taxonomy.Pages $.Page }}
+				{{ $before := slice }}
+				{{ $after  := slice }}
+				{{ $found  := false }}
+				{{ range $taxonomy.Pages.ByDate }}
+					{{ if eq . $.Page }}
+						{{ $found = true }}
+					{{ else if $found }}
+						{{ $after = $after | append . }}
+					{{ else }}
+						{{ $before = $before | append . }}
+					{{ end }}
+				{{ end }}
+				{{ $nearby := last 2 $before }}
+				{{ range first 2 $after }}
+					{{ $nearby = $nearby | append . }}
+				{{ end }}
+				{{ with $nearby }}
+					<h2>More in <a href="{{ $taxonomy.Page.Permalink }}">{{ $taxonomy.Page.Title }}</a></h2>
+					<ul>
+						{{ range $nearby }}
+							<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+						{{ end }}
+					</ul>
+				{{ end }}
 			{{ end }}
-		</ul>
 		{{ end }}
+
+		<!-- Other posts with the same tags -->
+		{{ range $key, $taxonomy := site.Taxonomies.tags }}
+			{{ if in $taxonomy.Pages $.Page }}
+				{{ $before := slice }}
+				{{ $after  := slice }}
+				{{ $found  := false }}
+				{{ range $taxonomy.Pages.ByDate }}
+					{{ if eq . $.Page }}
+						{{ $found = true }}
+					{{ else if $found }}
+						{{ $after = $after | append . }}
+					{{ else }}
+						{{ $before = $before | append . }}
+					{{ end }}
+				{{ end }}
+				{{ $nearby := last 2 $before }}
+				{{ range first 2 $after }}
+					{{ $nearby = $nearby | append . }}
+				{{ end }}
+				{{ with $nearby }}
+					<h2>More tagged <a href="{{ $taxonomy.Page.Permalink }}">{{ $taxonomy.Page.Title }}</a></h2>
+					<ul>
+						{{ range $nearby }}
+							<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+						{{ end }}
+					</ul>
+				{{ end }}
+			{{ end }}
+		{{ end }}
+
 	</div>
 	<div class="pure-u-1-24 pure-u-lg-1-12 pure-u-xl-1-5"></div>
 </div>
