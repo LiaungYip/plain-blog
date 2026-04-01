@@ -11,9 +11,8 @@
 		<meta name="author" content="{{ site.Author.name }}">
 	{{ end }}
 	{{ hugo.Generator }}
-	
+	<script>(function(){var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');document.documentElement.setAttribute('data-theme',t);}());</script>
 	{{ partial "stylesheets.html" . }}
-	
 	{{ if .Params.math }}
 		{{ partial "math.html" }}
 	{{ end }}
@@ -25,5 +24,7 @@
     {{ range site.Menus.top }}
       <a href="{{ .URL }}">{{ .Name }}</a>
     {{ end }}
+    <a href="#" id="theme-toggle" onclick="var n=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('theme',n);this.textContent=n==='dark'?'light mode':'dark mode';return false;">dark mode</a>
   </div>
 </div>
+<script>(function(){var t=document.documentElement.getAttribute('data-theme');document.getElementById('theme-toggle').textContent=t==='dark'?'light mode':'dark mode';}());</script>

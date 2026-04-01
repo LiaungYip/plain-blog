@@ -1,13 +1,48 @@
+/* Theme variables */
+:root {
+	--bg: #fff;
+	--bg-muted: #eee;
+	--bg-subtle: #f8f8f8;
+	--border: silver;
+	--text: #000;
+	--link: #00e;
+	--link-visited: #551a8b;
+	--code-color: #C00;
+}
+
+[data-theme="dark"] {
+	--bg: #1a1a1a;
+	--bg-muted: #2d2d2d;
+	--bg-subtle: #252525;
+	--border: #555;
+	--text: #ddd;
+	--link: #7ab8f5;
+	--link-visited: #c09aff;
+	--code-color: #ff7070;
+}
+
+body {
+	background: var(--bg);
+	color: var(--text);
+}
+
+a {
+	color: var(--link);
+}
+a:visited {
+	color: var(--link-visited);
+}
+
 /* site header */
 #header {
-	background: #eee;
-	border-bottom: 2px solid silver;
+	background: var(--bg-muted);
+	border-bottom: 2px solid var(--border);
 }
 
 /* related content */
 #related {
-	border-top: 2px solid silver;
-	background: #f8f8f8;
+	border-top: 2px solid var(--border);
+	background: var(--bg-subtle);
 	margin-top: 2em;
 	margin-bottom: -2em;
 	padding: 0;
@@ -17,9 +52,9 @@
 /* site footer */
 #foot {
 	margin-top: 2em;
-	background: #eee;
-	border-top: 2px solid silver;
-	border-bottom: 2px solid silver;
+	background: var(--bg-muted);
+	border-top: 2px solid var(--border);
+	border-bottom: 2px solid var(--border);
 	text-align: right;
 	padding: 0;	/*font-size: small;*/
 }
@@ -41,13 +76,13 @@
 	transition-duration: 0.25s;
 }
 #header a:hover, #foot a:hover {
-	background: silver;
+	background: var(--border);
 }
 
 /* article header and tag/category/series buttons */
 header {
 	padding-bottom: 0.2em;
-	border-bottom: 1px solid silver;
+	border-bottom: 1px solid var(--border);
 }
 header h1 {
 	margin-bottom: 0.2em;
@@ -61,11 +96,11 @@ header a.tag {
 	display: inline-block;
 	padding: 0.5em 1em;
 	text-decoration: none;
-	color: black;
+	color: var(--text);
 	transition-duration: 0.25s;
 }
 header a.tag:hover {
-	background: silver;
+	background: var(--border);
 }
 
 /* For styling listings */
@@ -86,13 +121,13 @@ article a.tag {
 	display: inline-block;
 	padding: 0.2em 0.5em;
 	margin-left: 0.5em;
-	background: #eee;
+	background: var(--bg-muted);
 	text-decoration: none;
-	color: black;
+	color: var(--text);
 	transition-duration: 0.25s;
 }
 article a.tag:hover {
-	background: silver;
+	background: var(--border);
 }
 
 /* resize images to viewport */
@@ -108,22 +143,22 @@ video {
 
 /* Various cosmetic tweaks */
 code {
-	color: #C00;
+	color: var(--code-color);
 }
 a code {
 	color: initial;
 }
 pre {
 	padding: 1em;
-	background: #eee;
+	background: var(--bg-muted);
 }
 pre code {
-	color: initial;
+	color: var(--text);
 }
 blockquote {
-	border-left: 5px solid silver;
+	border-left: 5px solid var(--border);
 	padding: 0.1em 1em 0.1em 1em;
-	background-color: #eee;
+	background-color: var(--bg-muted);
 }
 
 /* Hide stuff when printing */
@@ -135,10 +170,10 @@ blockquote {
 
 #toc {
 	float: right;
-	border: 1px solid silver;
+	border: 1px solid var(--border);
 	padding: 0em 1em;
 	margin: 1em;
-	background: #f8f8f8;
+	background: var(--bg-subtle);
 }
 
 #toc ul {
