@@ -6,6 +6,9 @@ date: {{ dateFormat "2006-01-02T15:04:05Z07:00" .Date }}
 # Explicitly setting an URL is optional.
 # url: /blank_page
 
+# Description is displayed as part of (for example) Facebook link previews.
+# description:
+
 categories:
 - Category 1
 - Category 2
