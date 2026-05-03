@@ -151,6 +151,7 @@ a code {
 pre {
 	padding: 1em;
 	background: var(--bg-muted);
+	white-space: pre-wrap;
 }
 pre code {
 	color: var(--text);
