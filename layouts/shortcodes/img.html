@@ -1,0 +1,39 @@
+{{- $src     := .Get "src" -}}
+{{- $alt     := .Get "alt" | default "" -}}
+{{- $caption := .Get "caption" | default "" -}}
+{{- $link    := .Get "link" | default "" -}}
+{{- $img := resources.Get $src -}}
+{{- if not $img -}}{{ errorf "img shortcode: cannot find resource %q" $src }}{{- end -}}
+
+{{- $isLightbox := eq $link "" -}}
+{{- $href := cond $isLightbox ($img.RelPermalink) $link -}}
+<figure class="img-figure" style="max-width: {{ $img.Width }}px">
+  <a href="{{ $href }}"
+     {{- if $isLightbox }} class="img-lightbox-trigger" data-full="{{ $img.RelPermalink }}"{{ end }}>
+    {{- if eq $img.MediaType.SubType "gif" -}}
+    <img src="{{ $img.RelPermalink }}"
+         alt="{{ $alt }}"
+         loading="lazy">
+    {{- else -}}
+    {{- $s480  := $img.Resize "480x"  -}}
+    {{- $s800  := $img.Resize "800x"  -}}
+    {{- $s1200 := $img.Resize "1200x" -}}
+    {{- $w480  := $img.Resize "480x webp"  -}}
+    {{- $w800  := $img.Resize "800x webp"  -}}
+    {{- $w1200 := $img.Resize "1200x webp" -}}
+    <picture>
+      <source type="image/webp"
+              srcset="{{ $w480.RelPermalink }} 480w, {{ $w800.RelPermalink }} 800w, {{ $w1200.RelPermalink }} 1200w"
+              sizes="(max-width: 600px) 480px, (max-width: 1200px) 800px, 1200px">
+      <img src="{{ $s800.RelPermalink }}"
+           srcset="{{ $s480.RelPermalink }} 480w, {{ $s800.RelPermalink }} 800w, {{ $s1200.RelPermalink }} 1200w"
+           sizes="(max-width: 600px) 480px, (max-width: 1200px) 800px, 1200px"
+           alt="{{ $alt }}"
+           loading="lazy"
+           width="{{ $s800.Width }}"
+           height="{{ $s800.Height }}">
+    </picture>
+    {{- end }}
+  </a>
+  {{- with $caption }}<figcaption>{{ . }}</figcaption>{{ end -}}
+</figure>

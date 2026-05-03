@@ -1,0 +1,4 @@
+{{ $css := resources.Get "lightbox.css" | minify | fingerprint }}
+{{ $js  := resources.Get "lightbox.js"  | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.Permalink }}">
+<script defer src="{{ $js.Permalink }}"></script>

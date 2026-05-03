@@ -48,3 +48,39 @@ The `data-theme` attribute is set on `<html>` by an inline script in `<head>` (b
 ### Toggle
 
 A "dark mode" / "light mode" link is rendered in `#header` alongside the nav links. Its `onclick` handler flips `data-theme`, writes to `localStorage`, and updates the link text. A second inline script immediately after the header div sets the correct initial label on page load.
+
+## Responsive images with lightbox (`layouts/shortcodes/img.html`, `assets/lightbox.css`, `assets/lightbox.js`, `layouts/partials/lightbox.html`)
+
+All images in content files use the `{{< img >}}` shortcode instead of markdown `![]()` syntax or raw `<img>` tags. Images live in `/assets/img/` (not `/static/`) so Hugo's image pipeline can process them.
+
+### Shortcode parameters
+
+| Parameter | Required | Description |
+|---|---|---|
+| `src` | Yes | Path relative to `assets/`, e.g. `img/wordpress-img/Foo.jpg` |
+| `alt` | No | Alt text |
+| `caption` | No | Figure caption rendered below the image |
+| `link` | No | If set, wraps image in a plain `<a>` to this URL instead of lightbox |
+
+### Image processing
+
+For non-GIF images the shortcode generates three size variants (480w, 800w, 1200w) in both the original format and WebP, served via `<picture>` with a WebP `<source>` and an original-format `<img>` fallback. `loading="lazy"` and explicit `width`/`height` are set on the `<img>` to prevent CLS.
+
+GIFs are excluded from all resizing (served as-is) to work around a Hugo 0.159 bug where resizing animated GIFs crashes the WASM image processor (see https://github.com/gohugoio/hugo/issues/14537).
+
+A missing `src` asset is a **build-time error** (`errorf`), not a silent failure.
+
+### Lightbox
+
+Clicking a non-`link` image opens a vanilla JS lightbox overlay showing the full-resolution original. The lightbox is injected unconditionally into every page via `{{ partial "lightbox.html" . }}` in `footer.html` (before `</body>`). CSS and JS are minified and fingerprinted via Hugo Pipes.
+
+Dismiss: click backdrop, click ✕ button, or press Escape.
+
+### `link` param use cases
+
+- Navigation thumbnails in `popular.md` — link to the post URL
+- PDF diagram thumbnails (ae2_inscriber, ae2_storage, draw_voxels, excavator, grinder_scavenging, railcraft_cow_farm) — link to the PDF URL
+
+## `[params]` in `config.toml`
+
+`site.Author` was removed in Hugo 0.124. The site config uses `[params]` with `author` and `gaID` keys. The theme reads these as `site.Params.author` and `site.Params.gaID`.

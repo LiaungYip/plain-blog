@@ -7,8 +7,8 @@
 	{{ if .Description }}
 		<meta name="description" content="{{ .Description }}">
 	{{ end }}
-	{{ if site.Author.name }}
-		<meta name="author" content="{{ site.Author.name }}">
+	{{ with site.Params.author }}
+		<meta name="author" content="{{ . }}">
 	{{ end }}
 	{{ hugo.Generator }}
 	<script>(function(){var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');document.documentElement.setAttribute('data-theme',t);}());</script>
