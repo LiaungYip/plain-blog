@@ -175,7 +175,7 @@ code {
 	color: var(--code-color);
 }
 a code {
-	color: initial;
+	color: inherit;
 }
 pre {
 	padding: 1em;
