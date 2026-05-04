@@ -109,7 +109,7 @@ Two CSS pseudo-elements on `.img-figure a` hint that images are clickable:
 - `::before` — a persistent `⤢` badge pinned to the bottom-right corner, always visible (important for touch/mobile where hover doesn't exist). Fades out when the hover overlay appears.
 - `::after` — on hover, a semi-transparent dark overlay fills the image with "Click to enlarge" text centred. Fades in/out with a 0.2s transition.
 
-Both are `pointer-events: none` so they don't interfere with the click. Neither is applied to `link`-param images (those use a plain `<a>` without the `img-lightbox-trigger` class) — wait, actually both pseudo-elements are on `.img-figure a` regardless of lightbox vs link. If this becomes an issue, scope them to `.img-figure a.img-lightbox-trigger`.
+Both are `pointer-events: none` so they don't interfere with the click. Both are scoped to `.img-figure a.img-lightbox-trigger` so they don't appear on `link`-param images (PDF thumbnails, nav thumbnails), which use a plain `<a>` without that class.
 
 ### `link` param use cases
 

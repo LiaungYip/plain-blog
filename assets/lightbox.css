@@ -32,15 +32,17 @@
 .img-figure { text-align: center; margin: 1em 0; }
 .img-figure figcaption { font-size: small; color: var(--text); margin-top: 0.4em; }
 
-/* Lightbox trigger affordance */
+/* Lightbox trigger affordance — scoped to lightbox images only, not link-param images */
 .img-figure a {
   display: inline-block;
-  cursor: zoom-in;
   position: relative;
+}
+.img-figure a.img-lightbox-trigger {
+  cursor: zoom-in;
 }
 
 /* Persistent corner badge — always visible, useful on touch screens */
-.img-figure a::before {
+.img-figure a.img-lightbox-trigger::before {
   content: "⤢";
   position: absolute;
   bottom: 0.3em;
@@ -57,7 +59,7 @@
 }
 
 /* Hover overlay — darkens image and shows "Click to enlarge" */
-.img-figure a::after {
+.img-figure a.img-lightbox-trigger::after {
   content: "Click to enlarge";
   position: absolute;
   inset: 0;
@@ -73,7 +75,7 @@
   border-radius: 2px;
 }
 
-.img-figure a:hover::after { opacity: 1; }
+.img-figure a.img-lightbox-trigger:hover::after { opacity: 1; }
 
 /* Fade out the corner badge when the overlay is visible */
-.img-figure a:hover::before { opacity: 0; }
+.img-figure a.img-lightbox-trigger:hover::before { opacity: 0; }
