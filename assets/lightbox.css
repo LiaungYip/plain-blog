@@ -31,4 +31,49 @@
 }
 .img-figure { text-align: center; margin: 1em 0; }
 .img-figure figcaption { font-size: small; color: var(--text); margin-top: 0.4em; }
-.img-figure a { display: inline-block; cursor: zoom-in; }
+
+/* Lightbox trigger affordance */
+.img-figure a {
+  display: inline-block;
+  cursor: zoom-in;
+  position: relative;
+}
+
+/* Persistent corner badge — always visible, useful on touch screens */
+.img-figure a::before {
+  content: "⤢";
+  position: absolute;
+  bottom: 0.3em;
+  right: 0.3em;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  font-size: 0.85rem;
+  line-height: 1;
+  padding: 0.2em 0.3em;
+  border-radius: 3px;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.2s;
+}
+
+/* Hover overlay — darkens image and shows "Click to enlarge" */
+.img-figure a::after {
+  content: "Click to enlarge";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  color: #fff;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+  border-radius: 2px;
+}
+
+.img-figure a:hover::after { opacity: 1; }
+
+/* Fade out the corner badge when the overlay is visible */
+.img-figure a:hover::before { opacity: 0; }

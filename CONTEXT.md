@@ -88,6 +88,15 @@ Clicking a non-`link` image opens a vanilla JS lightbox overlay showing the full
 
 Dismiss: click backdrop, click ✕ button, or press Escape.
 
+### Lightbox affordance cues (`assets/lightbox.css`)
+
+Two CSS pseudo-elements on `.img-figure a` hint that images are clickable:
+
+- `::before` — a persistent `⤢` badge pinned to the bottom-right corner, always visible (important for touch/mobile where hover doesn't exist). Fades out when the hover overlay appears.
+- `::after` — on hover, a semi-transparent dark overlay fills the image with "Click to enlarge" text centred. Fades in/out with a 0.2s transition.
+
+Both are `pointer-events: none` so they don't interfere with the click. Neither is applied to `link`-param images (those use a plain `<a>` without the `img-lightbox-trigger` class) — wait, actually both pseudo-elements are on `.img-figure a` regardless of lightbox vs link. If this becomes an issue, scope them to `.img-figure a.img-lightbox-trigger`.
+
 ### `link` param use cases
 
 - Navigation thumbnails in `popular.md` — link to the post URL
