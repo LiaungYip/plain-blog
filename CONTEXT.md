@@ -47,7 +47,21 @@ The `data-theme` attribute is set on `<html>` by an inline script in `<head>` (b
 
 ### Toggle
 
-A "dark mode" / "light mode" link is rendered in `#header` alongside the nav links. Its `onclick` handler flips `data-theme`, writes to `localStorage`, and updates the link text. A second inline script immediately after the header div sets the correct initial label on page load.
+A tri-state segmented control (`Dark | Auto | Light`) is rendered in `#header` as `<span id="theme-control">` containing three `<button>` elements, each with a `data-value` attribute (`dark`, `auto`, `light`).
+
+**States:**
+- `Dark` / `Light` — explicit override stored in `localStorage` as `'dark'` or `'light'`.
+- `Auto` — follows `prefers-color-scheme`; stored as `'auto'` in `localStorage`.
+
+**Two attributes on `<html>`:**
+- `data-theme` — the resolved theme (`'dark'` or `'light'`), used by the CSS variable overrides.
+- `data-theme-pref` — the stored preference (`'dark'`, `'auto'`, or `'light'`), used by CSS to highlight the active segment.
+
+**Init script (inline in `<head>`, runs before paint):** reads `localStorage`, defaults to `'auto'` if absent, resolves `auto` via `matchMedia('(prefers-color-scheme: light)')`, then sets both `data-theme` and `data-theme-pref` on `<html>`.
+
+**`setThemePref(p)` (inline `<script>` after `#header`):** called by each button's `onclick`. Resolves the theme, updates both attributes, and writes to `localStorage`.
+
+**Active state:** CSS rule `[data-theme-pref="X"] [data-value="X"]` fills the matching button with `var(--border)` background — no JS DOM manipulation needed for the visual state.
 
 ## Responsive images with lightbox (`layouts/shortcodes/img.html`, `assets/lightbox.css`, `assets/lightbox.js`, `layouts/partials/lightbox.html`)
 
