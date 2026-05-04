@@ -15,23 +15,41 @@
          alt="{{ $alt }}"
          loading="lazy">
     {{- else -}}
-    {{- $s480  := $img.Resize "480x"  -}}
-    {{- $s800  := $img.Resize "800x"  -}}
-    {{- $s1200 := $img.Resize "1200x" -}}
-    {{- $w480  := $img.Resize "480x webp"  -}}
-    {{- $w800  := $img.Resize "800x webp"  -}}
-    {{- $w1200 := $img.Resize "1200x webp" -}}
+    {{/* Build srcset — only downscale; never upscale */}}
+    {{- $srcsetParts  := slice -}}
+    {{- $wsrcsetParts := slice -}}
+    {{- range $size := slice 480 800 1200 -}}
+      {{- if gt $img.Width $size -}}
+        {{- $r := $img.Resize (printf "%dx" $size) -}}
+        {{- $w := $img.Resize (printf "%dx webp" $size) -}}
+        {{- $srcsetParts  = $srcsetParts  | append (printf "%s %dw" $r.RelPermalink $size) -}}
+        {{- $wsrcsetParts = $wsrcsetParts | append (printf "%s %dw" $w.RelPermalink  $size) -}}
+      {{- end -}}
+    {{- end -}}
+    {{/* Native size is always the largest entry */}}
+    {{- $nativeWebP  := $img.Resize (printf "%dx webp" $img.Width) -}}
+    {{- $srcsetParts  = $srcsetParts  | append (printf "%s %dw" $img.RelPermalink        $img.Width) -}}
+    {{- $wsrcsetParts = $wsrcsetParts | append (printf "%s %dw" $nativeWebP.RelPermalink $img.Width) -}}
+    {{/* sizes: cap at native width per breakpoint */}}
+    {{- $sizesAttr := "" -}}
+    {{- if gt $img.Width 800 -}}
+      {{- $sizesAttr = printf "(max-width: 600px) 480px, (max-width: 1200px) 800px, %dpx" $img.Width -}}
+    {{- else if gt $img.Width 480 -}}
+      {{- $sizesAttr = printf "(max-width: 600px) 480px, %dpx" $img.Width -}}
+    {{- else -}}
+      {{- $sizesAttr = printf "%dpx" $img.Width -}}
+    {{- end -}}
     <picture>
       <source type="image/webp"
-              srcset="{{ $w480.RelPermalink }} 480w, {{ $w800.RelPermalink }} 800w, {{ $w1200.RelPermalink }} 1200w"
-              sizes="(max-width: 600px) 480px, (max-width: 1200px) 800px, 1200px">
-      <img src="{{ $s800.RelPermalink }}"
-           srcset="{{ $s480.RelPermalink }} 480w, {{ $s800.RelPermalink }} 800w, {{ $s1200.RelPermalink }} 1200w"
-           sizes="(max-width: 600px) 480px, (max-width: 1200px) 800px, 1200px"
+              srcset="{{ delimit $wsrcsetParts ", " }}"
+              sizes="{{ $sizesAttr }}">
+      <img src="{{ $img.RelPermalink }}"
+           srcset="{{ delimit $srcsetParts ", " }}"
+           sizes="{{ $sizesAttr }}"
            alt="{{ $alt }}"
            loading="lazy"
-           width="{{ $s800.Width }}"
-           height="{{ $s800.Height }}">
+           width="{{ $img.Width }}"
+           height="{{ $img.Height }}">
     </picture>
     {{- end }}
   </a>

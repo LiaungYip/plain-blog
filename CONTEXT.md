@@ -64,7 +64,19 @@ All images in content files use the `{{< img >}}` shortcode instead of markdown 
 
 ### Image processing
 
-For non-GIF images the shortcode generates three size variants (480w, 800w, 1200w) in both the original format and WebP, served via `<picture>` with a WebP `<source>` and an original-format `<img>` fallback. `loading="lazy"` and explicit `width`/`height` are set on the `<img>` to prevent CLS.
+For non-GIF images the shortcode generates srcset variants dynamically, only for sizes **smaller than the native image width** (never upscaling). The fixed candidate widths are 480, 800, and 1200 px; any candidate ≥ the source width is skipped. The native-size original (and a native-size WebP conversion) are always included as the largest srcset entry.
+
+- `width`/`height` on `<img>` are set from the **original** image dimensions (not a resized variant) to give the browser the correct aspect ratio for CLS prevention.
+- The `sizes` attribute is capped at the native image width. The layout uses a fluid PureCSS grid (content column is 60% of viewport at XL breakpoints, no fixed-pixel cap), so `sizes` must not cap at an arbitrary pixel value like 1200px — that would cause the browser to download an undersized variant for wide monitors, resulting in blur.
+  - native > 800 px → `(max-width: 600px) 480px, (max-width: 1200px) 800px, Npx` (N = native width)
+  - native 481–800 px → `(max-width: 600px) 480px, Npx`
+  - native ≤ 480 px → `Npx`
+- The `src` fallback on `<img>` is the original file (unresized).
+
+Examples:
+- 593 px image → srcset: `480w, 593w`; sizes: `(max-width: 600px) 480px, 593px`
+- 1500 px image → srcset: `480w, 800w, 1200w, 1500w`; sizes: `(max-width: 600px) 480px, (max-width: 1200px) 800px, 1500px`
+- 300 px image → srcset: `300w` only; sizes: `300px`
 
 GIFs are excluded from all resizing (served as-is) to work around a Hugo 0.159 bug where resizing animated GIFs crashes the WASM image processor (see https://github.com/gohugoio/hugo/issues/14537).
 
