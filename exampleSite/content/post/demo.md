@@ -2,6 +2,7 @@
 draft: false
 title: Feature Demo
 date: 2022-04-18T12:25:42+08:00
+content-updated-date: 2022-06-01
 
 # Explicitly setting an URL is optional.
 # url: /blank_page
@@ -102,3 +103,13 @@ Display math:
 > $$ I_{base} = \frac{S_{base}}{V_{base}\times\sqrt{3}} $$
 > $$ Z_{base} = \frac{V_{base}}{I_{base}\times\sqrt{3}} = \frac{V_{base}^{2}}{S_{base}}$$
 >
+
+# Updated date
+
+Add `content-updated-date` to a page's front matter to show an "Updated" timestamp alongside the "Posted" date:
+
+```yaml
+content-updated-date: 2022-06-01
+```
+
+Omitting the key suppresses the "Updated" label entirely — the date is never inferred from file modification time, so touching a file for non-content reasons (formatting, shortcode migration, etc.) won't cause a spurious updated date to appear.

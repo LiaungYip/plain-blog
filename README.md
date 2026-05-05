@@ -25,6 +25,7 @@ Looking for a Hugo documentation theme with a similar focus on minimal functiona
 * Top and bottom menus.
 * Printable - headers, footers, and menus disappear when you hit the "Print" button.
 * Table of contents - use `show_table_of_contents = "true"` in front matter.
+* Intentional "Updated" date - add `content-updated-date = "YYYY-MM-DD"` in front matter to show an updated date alongside the posted date. Omitting it suppresses the "Updated" label entirely, so spurious file-modification timestamps don't appear.
 * Hugo Pipes is used to fetch third-party CSS and JS dependencies at the time you build the website, avoiding use of third-party CDN's. (See https://github.com/gohugoio/hugoThemes/issues/668 .)
 * Supports math using KaTeX - `$ x = \frac{-b\pm\sqrt{b^2-4ac}}{2a} $` -  use `math = "true"` in front matter. (Note: Uses third party CDN - for now.)
 

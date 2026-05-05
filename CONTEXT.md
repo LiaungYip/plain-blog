@@ -20,6 +20,19 @@ The `related.html` partial is included at the bottom of every single post (`_def
 - Hugo's scored related-content algorithm (`RegularPages.Related`) was removed. It was unreliable for posts that have no `tags` or `keywords` front matter — those posts scored below the threshold and showed no related links at all.
 - Taxonomy-based listing is explicit and predictable: any post that shares a category or tag will always appear, regardless of whether it has keywords defined.
 
+## Post timestamps (`layouts/partials/timestamps.html`)
+
+"Posted" is always shown from `.Date`. "Updated" is shown **only** when the front matter key `content-updated-date` is explicitly set — it is never inferred from file modification time or Hugo's `lastmod`.
+
+To mark a post as updated, add to its front matter:
+```yaml
+content-updated-date: 2026-05-01
+```
+
+Hugo's internal `lastmod` cascade (`config.toml`: `lastmod = ["lastmod", ":fileModTime"]`) is left untouched — it still drives sitemap/RSS freshness. The displayed "Updated" date is fully independent of it.
+
+The hyphenated key requires `index .Params "content-updated-date"` in templates (dot notation doesn't work for hyphenated keys). The value is parsed with `time .` to produce a `time.Time` for the `datetime` attribute and timeago rendering.
+
 ## Dark mode (`assets/plain-blog.css`, `layouts/partials/header.html`)
 
 All colours in the stylesheet are expressed as CSS custom properties rather than hardcoded values. The variables are defined on `:root` (light mode defaults) and overridden under `[data-theme="dark"]`.
