@@ -170,6 +170,12 @@ video {
 	height: auto;
 }
 
+/* List item spacing — scoped to main content only */
+main li {
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+}
+
 /* Various cosmetic tweaks */
 code {
 	color: var(--code-color);
