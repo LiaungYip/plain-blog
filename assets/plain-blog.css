@@ -213,3 +213,74 @@ blockquote {
 #toc a {
 	text-decoration: none;
 }
+
+/* ── Info blocks ──────────────────────────────────────────── */
+.callout-block {
+	display: flex;
+	align-items: flex-start;
+	border-radius: 0.5rem;
+	overflow: hidden;
+	margin: 1rem 0;
+	font-size: 0.95rem;
+}
+.callout-block__icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.6rem 0;
+	width: 3em;
+	flex-shrink: 0;
+	font-size: 1.3rem;
+	color: rgba(0, 0, 0, 0.75);
+}
+.callout-block__content {
+	flex: 1;
+	align-self: stretch;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 0.6rem 0.9rem;
+}
+.callout-block__content > *:first-child { margin-top: 0; }
+.callout-block__content > *:last-child  { margin-bottom: 0; }
+
+/* note */
+.callout-block--note                         { background: #607D8B; }
+.callout-block--note .callout-block__icon    { color: white; }
+.callout-block--note .callout-block__content { background: #ECEFF1; color: #263238; }
+/* quote — same palette as note */
+.callout-block--quote                         { background: #607D8B; }
+.callout-block--quote .callout-block__icon    { color: white; }
+.callout-block--quote .callout-block__content { background: #ECEFF1; color: #263238; }
+/* info */
+.callout-block--info                         { background: #64B5F6; }
+.callout-block--info .callout-block__content { background: #E3F2FD; color: #0D47A1; }
+/* success */
+.callout-block--success                         { background: #81C784; }
+.callout-block--success .callout-block__content { background: #E8F5E9; color: #1B5E20; }
+/* warning */
+.callout-block--warning                         { background: #FFB74D; }
+.callout-block--warning .callout-block__content { background: #FFF3E0; color: #BF360C; }
+/* danger */
+.callout-block--danger                         { background: #E57373; }
+.callout-block--danger .callout-block__content { background: #FFEBEE; color: #B71C1C; }
+/* updated */
+.callout-block--updated                         { background: #CE93D8; }
+.callout-block--updated .callout-block__content { background: #F3E5F5; color: #4A148C; }
+
+/* Dark mode overrides */
+[data-theme="dark"] .callout-block__icon { color: white; }
+[data-theme="dark"] .callout-block--note                         { background: #455A64; }
+[data-theme="dark"] .callout-block--note .callout-block__content { background: #263238; color: #CFD8DC; }
+[data-theme="dark"] .callout-block--quote                         { background: #455A64; }
+[data-theme="dark"] .callout-block--quote .callout-block__content { background: #263238; color: #CFD8DC; }
+[data-theme="dark"] .callout-block--info                         { background: #1565C0; }
+[data-theme="dark"] .callout-block--info .callout-block__content { background: #0D47A1; color: #E3F2FD; }
+[data-theme="dark"] .callout-block--success                         { background: #2E7D32; }
+[data-theme="dark"] .callout-block--success .callout-block__content { background: #1B5E20; color: #E8F5E9; }
+[data-theme="dark"] .callout-block--warning                         { background: #E65100; }
+[data-theme="dark"] .callout-block--warning .callout-block__content { background: #4A1800; color: #FFE0B2; }
+[data-theme="dark"] .callout-block--danger                         { background: #C62828; }
+[data-theme="dark"] .callout-block--danger .callout-block__content { background: #7F0000; color: #FFCDD2; }
+[data-theme="dark"] .callout-block--updated                         { background: #7B1FA2; }
+[data-theme="dark"] .callout-block--updated .callout-block__content { background: #4A148C; color: #E1BEE7; }

@@ -1,0 +1,13 @@
+{{- $type := .Get "type" | default "note" -}}
+{{- $icon  := "✦" -}}
+{{- $class := "callout-block--note" -}}
+{{- if eq $type "info"    -}}{{- $icon = "ℹ" -}}{{- $class = "callout-block--info"    -}}{{- end -}}
+{{- if eq $type "success" -}}{{- $icon = "✓" -}}{{- $class = "callout-block--success" -}}{{- end -}}
+{{- if eq $type "warning" -}}{{- $icon = "⚠" -}}{{- $class = "callout-block--warning" -}}{{- end -}}
+{{- if eq $type "danger"  -}}{{- $icon = "✕" -}}{{- $class = "callout-block--danger"  -}}{{- end -}}
+{{- if eq $type "updated" -}}{{- $icon = "↻" -}}{{- $class = "callout-block--updated" -}}{{- end -}}
+{{- if eq $type "quote"   -}}{{- $icon = "🙷" -}}{{- $class = "callout-block--quote"   -}}{{- end -}}
+<div class="callout-block {{ $class }}">
+  <div class="callout-block__icon">{{ $icon }}</div>
+  <div class="callout-block__content">{{ .Inner | markdownify }}</div>
+</div>

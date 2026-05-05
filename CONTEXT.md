@@ -129,6 +129,75 @@ Both are `pointer-events: none` so they don't interfere with the click. Both are
 - Navigation thumbnails in `popular.md` — link to the post URL
 - PDF diagram thumbnails (ae2_inscriber, ae2_storage, draw_voxels, excavator, grinder_scavenging, railcraft_cow_farm) — link to the PDF URL
 
+## Callout blocks (`layouts/shortcodes/callout.html`, `assets/plain-blog.css`)
+
+A single `{{< callout >}}` shortcode renders styled callout boxes. The `type` param selects the variant; default is `note`.
+
+### Valid types
+
+| `type` | Icon | Colour family |
+|---|---|---|
+| `note` (default) | ✦ | Blue-grey |
+| `quote` | 🙷 | Blue-grey (same as note) |
+| `info` | ℹ | Blue |
+| `success` | ✓ | Green |
+| `warning` | ⚠ | Orange |
+| `danger` | ✕ | Red |
+| `updated` | ↻ | Purple |
+
+Icons are plain Unicode glyphs (not emoji) so they inherit CSS `color` and render consistently across platforms.
+
+### Layout
+
+Flex row: icon centred in a coloured left strip, Markdown content in a lighter content area to the right. `border-radius: 0.5rem` on the outer container; `overflow: hidden` clips the strip corners.
+
+### Colours
+
+Follow wiki.js's Material Design palette convention:
+- **Light mode** — light-shade (50) content bg, mid-shade (300) icon strip, dark-shade (900) text.
+- **Dark mode** — dark-shade (900) content bg, darker mid-shade (700) icon strip, light-shade (50/100) text.
+
+Dark mode is handled by `[data-theme="dark"]` selector overrides in `plain-blog.css`, consistent with the rest of the theme.
+
+### Icon contrast
+
+The icon strip colours in light mode are Material 300 shades — too light for white text. Icon colour is therefore split by theme:
+
+- **Light mode** — `.callout-block__icon { color: rgba(0,0,0,0.75); }` — dark text on mid-shade strips passes WCAG AA.
+- **Dark mode** — `[data-theme="dark"] .callout-block__icon { color: white; }` — white text on Material 700–900 strips passes WCAG AA.
+
+A single per-theme rule covers all six variants; no per-variant icon colour overrides are needed.
+
+The original emoji icons (💬 ℹ️ ✅ ⚠️ ❌ 🕐) were replaced because OS-rendered emoji do not respond to CSS `color`. Several variants had near-zero contrast when the emoji's dominant hue matched the strip background (e.g. ✅ green on green strip).
+
+### Usage
+
+```
+{{</* callout type="warning" */>}}
+You **must** restart the service after changing this setting.
+{{</* /callout */>}}
+```
+
+Inner content is processed as Markdown via `.Inner | markdownify`.
+
+### Future investigation
+
+Whether the Material palette used here should be extended to the rest of the theme's CSS custom properties (`--bg`, `--border`, `--text`, etc.) — investigate the gap.
+
+## Accessibility backlog
+
+Known issues identified but not yet fixed, in priority order.
+
+1. **No skip navigation link** *(WCAG 2.4.1, Level A)* — `header.html` has no `<a href="#main">Skip to content</a>`. Keyboard/screen reader users must tab through all nav links and the theme control on every page. The `<main id="main">` target already exists in `single.html`.
+
+2. **Theme toggle missing `aria-pressed`** *(WCAG 4.1.2, Level A)* — Dark/Auto/Light buttons in `header.html` convey active state via CSS only. `setThemePref()` needs to set `aria-pressed="true"` on the active button and `"false"` on the others.
+
+3. **No `:focus-visible` styles** *(WCAG 2.4.7, Level AA)* — `plain-blog.css` defines no `:focus` or `:focus-visible` rules. Header/footer and article listing links suppress `text-decoration`, leaving keyboard users reliant on the browser default focus ring, which may be invisible against `--bg-muted`.
+
+4. **Nav links not in `<nav>` landmark** *(WCAG 4.1.2, Level A)* — Site nav in `header.html` is bare `<a>` elements in a `<div>`. No `<nav>` landmark exists, so screen reader users cannot jump to navigation via landmark navigation.
+
+5. **Callout block type not communicated to screen readers** *(WCAG 1.3.1, Level A)* — `callout.html` emits a plain `<div>` with no `role` or visually-hidden label. The `type` (warning, danger, etc.) is lost to assistive technology. Fix: prepend `<span class="sr-only">{{ $type | title }}:</span>` inside `.callout-block__icon`, or add `role="note"` and `aria-label` to the outer div.
+
 ## `[params]` in `config.toml`
 
 `site.Author` was removed in Hugo 0.124. The site config uses `[params]` with `author` and `gaID` keys. The theme reads these as `site.Params.author` and `site.Params.gaID`.
