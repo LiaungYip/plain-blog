@@ -243,6 +243,7 @@ blockquote {
 }
 .callout-block__content > *:first-child { margin-top: 0; }
 .callout-block__content > *:last-child  { margin-bottom: 0; }
+.callout-block__content p { margin: 0.3em 0; }
 
 /* note */
 .callout-block--note                         { background: #607D8B; }
