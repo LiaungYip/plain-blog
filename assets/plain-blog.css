@@ -240,11 +240,11 @@ blockquote {
 	color: rgba(0, 0, 0, 0.75);
 }
 .callout-block__content {
-	flex: 1;
+	/*flex: 1;
 	align-self: stretch;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: center;*/
 	padding: 0.6rem 0.9rem;
 }
 .callout-block__content > *:first-child { margin-top: 0; }
